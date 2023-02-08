@@ -42,11 +42,16 @@
 
                 document.getElementById('confuse').addEventListener('click', ()=>{
                     let res = '';
+                    let length_e = document.getElementById('length');
+                    let l = Number(length_e.value);
+                    if( l.isNaN() ) {
+                        l = 5;
+                    }
 
                     let use_randchar = document.getElementById('use_random_char').checked;
                     if( use_randchar ) {
                         for( let _ = 0; _ < 4; _++ ) {
-                            for( let _ = 0; _ < 5; _++ ) {
+                            for( let _ = 0; _ < l; _++ ) {
                                 res += String.fromCharCode(randint(0x4e00, 0x9fa5));
                             }
                             res += '，';
@@ -66,9 +71,14 @@
                 });
             };
         </script>
-        <style></style>
+        <style>
+#title {
+    text-align: center;
+}
+        </style>
     </head>
     <body>
+        <h1 id='title'>狗屁不通诗句生成器</h1>
         <input type='button' id='confuse' value='生成' />
         <input type='text' id='length' placeholder='单句字数(默认5)' /><br/>
         <input type='button' id='clear' value='清除' />
